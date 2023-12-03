@@ -1,0 +1,20 @@
+@import "../../../../assets/styles/colores.scss";
+
+::ng-deep.mat-form-field-underline {
+  background-color: #b0bec5 !important;
+}
+::ng-deep .mat-form-field-label {
+  color: #b0bec5 !important;
+}
+
+.container-image {
+  background-color: #FFF;
+  border-radius: 6px;
+  img {
+    height: 420px;
+  }
+}
+
+.fit-content {
+  width: fit-content !important;
+}

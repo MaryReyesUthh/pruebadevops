@@ -1,0 +1,12 @@
+@import "../../../../assets/styles/colores.scss";
+.container-image {
+  img {
+    height: 220px;
+    width: 100%;
+    object-fit: scale-down;
+  }
+}
+
+.txt-pink {
+  color: $pry-red !important;
+}

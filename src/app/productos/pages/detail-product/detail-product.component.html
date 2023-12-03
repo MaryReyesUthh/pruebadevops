@@ -1,0 +1,66 @@
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="container-image mb-2">
+                <img src="{{urlImage}}/{{objProducto.imageUrl}}">
+            </div>
+        </div>
+        <div class="col-md-7 shadow card p-4">
+            <div class="d-flex justify-content-between">
+                <p class="fw-light text-pry-gray">{{category}}</p>
+                <button mat-icon-button color="warn" matTooltip="Agregar a favoritos">
+                    <mat-icon>favorite_border</mat-icon>
+                </button>
+            </div>
+            <h1><b>{{objProducto.title | uppercase}}</b></h1>
+            <p class="h5 fw-light text-pry-dark">
+                {{objProducto.description}}
+            </p>
+            <p class="h3">
+                <b class="text-muted fst-normal text-pry-red">{{objProducto.precio |
+                    currency:'MXN':'symbol-narrow':'.2-2'}}</b>
+            </p>
+
+            <div class="d-flex justify-content-between">
+                <p class="text-secondary-red">{{!objTalla ? 'Sin inventario' : 'Disponible'}}</p>
+                <p class="text-pry-gray">Stock: <b class="text-pry-red">{{objTalla ? objTalla.inventario : 0}}</b></p>
+            </div>
+            <mat-button-toggle-group class="fit-content mb-3">
+                <ng-container *ngFor="let eTalla of objProducto.inventario">
+                    <ng-container *ngIf="eTalla.inventario > 0">
+                        <mat-button-toggle (click)="setCantidad(cant, eTalla)">
+                            <container-element [ngSwitch]="eTalla.talla">
+                                <span *ngSwitchCase="'xl'">Extra grande</span>
+                                <span *ngSwitchCase="'l'">Grande</span>
+                                <span *ngSwitchCase="'m'">Mediana</span>
+                                <span *ngSwitchCase="'s'">Chica</span>
+                                <span *ngSwitchCase="'xs'">Extra chica</span>
+                            </container-element>
+                        </mat-button-toggle>
+                    </ng-container>
+                </ng-container>
+            </mat-button-toggle-group>
+            
+            <mat-form-field class="form-full mb-2">
+                <mat-label>Cantidad</mat-label>
+                <input matInput min="1" [value]="cantidad" #cant [disabled]="!objTalla" (change)="setCantidad(cant)"
+                    value="1" placeholder="Cantidad a comprar" type="number" required />
+            </mat-form-field>
+            <div class="row">
+                <div class="col-md-6">
+                    <button mat-raised-button (click)="comprarAhora()" [disabled]="!objTalla"
+                        class="k-btn-pry-red form-full">
+                        <mat-icon>payment</mat-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button mat-stroked-button (click)="agregarAlCarrito()" [disabled]="!objTalla" class="form-full">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Agregar al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

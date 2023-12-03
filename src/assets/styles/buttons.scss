@@ -1,0 +1,149 @@
+// BOTONES PRIMARIOS
+@import './colores.scss';
+.k-btn-primary,
+.k-btn-secondary{
+  height: 32px !important;
+  font-family: "Open Sans" !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  border-radius: 2px !important;
+  line-height: 0 !important;
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  mat-icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 20px;
+  }
+}
+.k-btn-primary {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25)!important;
+  color: #fff !important;
+}
+.k-btn-middle {
+  height: 40px !important;
+}
+
+.k-btn-secondary-red {
+  background-color: #24c161 !important;
+}
+
+.k-btn-pry-gray {
+  background-color: #BDBDBD !important;
+}
+
+.k-btn-pry-back {
+  background-color: #21243d !important;
+}
+
+.k-btn-pry-blue {
+  background-color: $pry-blue !important;
+}
+
+.k-btn-pry-purple {
+  background-color: #b6a9f4 !important;
+}
+
+.k-btn-pry-blue-alt {
+  background-color: #5E6EFF !important;
+}
+
+.k-btn-pry-red {
+  background-color: $pry-red !important;
+  color: #FFF !important;
+}
+
+.k-btn-pry-red:disabled {
+  background-color: #BDBDBD !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+.k-btn-pry-danger {
+  background-color: $pry-red !important;
+}
+
+.k-btn-icon {
+  mat-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+.k-btn-primary:disabled {
+  background-color: #BDBDBD !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+.btn-close-modal {
+  color: #828282;
+}
+
+.btn-swal-success {
+  background: #39F;
+}
+
+.btn-swal-revoke {
+  background: #F36;
+}
+
+.btn-swal-revoke:hover {
+  background: #F36;
+}
+
+.swal2-confirm:hover {
+  background: #39F;
+}
+
+// k-btn-secondary for stroke --mat-stroked-button
+
+.k-btn-sry-blue {
+  color: #5E6EFF !important;
+  border: 1px solid #5E6EFF !important;
+}
+
+
+
+
+// BOTONES SECUNDARIOS STROKED
+
+.k-btn-sdy-gray {
+border: 1px solid #BDBDBD;
+color: #828282;
+background: none;
+}
+
+/*
+<button class="k-btn-primary k-btn-secondary-red" mat-flat-button>Nuevo anticipo</button>
+
+<button class="k-btn-primary k-btn-pry-back" mat-flat-button>Nuevo anticipo</button>
+
+<button class="k-btn-primary k-btn-pry-blue" mat-flat-button>Nuevo anticipo</button>
+
+<button class="k-btn-primary k-btn-pry-purple" mat-flat-button>Nuevo
+anticipo</button>
+
+<button class="k-btn-primary k-btn-pry-orange" mat-flat-button>Nuevo
+anticipo</button>
+
+*/
+
+
+.primary-color-btn {
+  color: #FFF;
+  background-color: #39F;
+}
+
+
+// btn con margen color azul
+
+.btn-margin-blue {
+  color: $pry-red;
+  border: $pry-red 1px solid !important;
+}
+
+.btn-margin-blue[ng-reflect-disabled="true"] {
+  border:none !important;
+}

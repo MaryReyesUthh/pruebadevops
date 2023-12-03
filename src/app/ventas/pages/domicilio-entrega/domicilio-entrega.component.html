@@ -1,0 +1,69 @@
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Mis domicilios</h3>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                [(ngModel)]="direccionID">
+                <mat-card class="my-3" *ngIf="!direcciones || direcciones.length === 0">
+                    <div class="d-flex justify-content-center">
+                        <img src="../../../../assets/resources/no-directions.png" height="400px">
+                    </div>
+                    <p class="h6 my-2 text-center">Sin direcciones agregadas</p>
+                </mat-card>
+                <mat-card class="example-card my-4" *ngFor="let dir of direcciones">
+                    <mat-card-content>
+                        <div class="mt-2">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <mat-radio-button color="warn" [value]="dir._id.$oid">
+                                        </mat-radio-button>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p class="h5 text-truncate cursor" matTooltip="Ver producto">
+                                            Tel. {{dir.telefono}}
+                                        </p>
+                                        <p>
+                                            <small>
+                                                Calle {{dir.calle | uppercase}}, {{dir.colonia | uppercase}},
+                                                {{dir.municipio | uppercase}}, {{dir.estado | uppercase}}
+                                            </small><br>
+                                            {{dir.nombre | uppercase}}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button mat-stroked-button (click)="openModalDireccion(false, dir)" class="mb-2 form-full">Editar</button>
+                                        <button mat-stroked-button (click)="eliminarDireccion(dir)" class="form-full">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-radio-group>
+            <button mat-raised-button (click)="continuarCompra()" [disabled]="!direcciones || direcciones.length === 0" class="k-btn-pry-red">Continuar</button>
+            <button mat-stroked-button class="mx-2" (click)="openModalDireccion(true)">Agregar dirección</button>
+        </div>
+        <div class="col-md-3">
+            <mat-card class="example-card">
+                <mat-card-title>Resumen de compra</mat-card-title>
+                <mat-divider></mat-divider>
+                <br>
+                <mat-card-content>
+                    <div class="d-flex justify-content-between">
+                        <p>Productos ({{Productos.length}})</p>
+                        <p class="text-right">{{altaCarrito.total | currency:'MXN':'symbol-narrow':'.2-2'}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>Envío</p>
+                        <p class="text-right text-secondary-red">Gratis</p>
+                    </div>
+                    <div class="d-flex justify-content-between h4">
+                        <p class="text-pry-red">Total</p>
+                        <p class="text-right text-pry-red">{{altaCarrito.total | currency:'MXN':'symbol-narrow':'.2-2'}}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

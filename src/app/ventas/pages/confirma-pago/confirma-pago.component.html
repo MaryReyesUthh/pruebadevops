@@ -1,0 +1,103 @@
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Confirmar compra</h3>
+            <div class="pt-3">
+                <p>Domicilio</p>
+            </div>
+            <mat-card class="example-card mb-4">
+                <mat-card-content>
+                    <div class="mt-2">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-md-2 text-center">
+                                    <mat-icon class="location-icon">fmd_good</mat-icon>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="h5 text-truncate cursor" matTooltip="Ver producto">
+                                            Tel. {{altaCarrito.direccionEntrega.telefono}}
+                                        </p>
+                                        <div>
+                                            <button mat-stroked-button (click)="cambiarDireccion()"
+                                                class="pull-right">Editar o
+                                                elegir otro</button>
+
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <small>
+                                            Calle {{altaCarrito.direccionEntrega.calle | uppercase}},
+                                            {{altaCarrito.direccionEntrega.colonia | uppercase}},
+                                            {{altaCarrito.direccionEntrega.municipio | uppercase}},
+                                            {{altaCarrito.direccionEntrega.estado | uppercase}}
+                                        </small><br>
+                                        {{altaCarrito.direccionEntrega.nombre | uppercase}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <div class="pt-3">
+                <p>Productos</p>
+            </div>
+            <mat-card class="example-card mb-4">
+                <mat-card-title>Productos ({{getCantProductos(altaCarrito)}})</mat-card-title>
+                <mat-card-content>
+                    <div *ngFor="let prod of altaCarrito.productos" class="py-1">
+                        <mat-divider></mat-divider>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="container-image">
+                                    <img src="{{urlImage}}/{{prod.imageUrl}}">
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-truncate h5">{{prod.title}}</p>
+                                    <p class="txt-red h5">{{prod.subtotal | currency:'MXN':'symbol-narrow':'.2-2'}}</p>
+                                </div>
+                                <span>{{prod.category}}</span><br>
+                                Cantidad: {{prod.cantidad}} |
+                                <small>Talla:
+                                    <container-element [ngSwitch]="prod.talla">
+                                        <span *ngSwitchCase="'xl'">Extra grande</span>
+                                        <span *ngSwitchCase="'l'">Grande</span>
+                                        <span *ngSwitchCase="'m'">Mediana</span>
+                                        <span *ngSwitchCase="'s'">Chica</span>
+                                        <span *ngSwitchCase="'xs'">Extra chica</span>
+                                    </container-element>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <button mat-raised-button (click)="confirmarCompra()" class="k-btn-pry-red">Continuar compra</button>
+        </div>
+        <div class="col-md-3">
+            <mat-card class="example-card">
+                <mat-card-title>Resumen de compra</mat-card-title>
+                <mat-divider></mat-divider>
+                <br>
+                <mat-card-content>
+                    <div class="d-flex justify-content-between">
+                        <p>Total en productos</p>
+                        <p class="text-right">{{altaCarrito.total | currency:'MXN':'symbol-narrow':'.2-2'}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>Envío</p>
+                        <p class="text-right">Gratis</p>
+                    </div>
+                    <div class="d-flex justify-content-between h5">
+                        <p>Total</p>
+                        <p class="text-right">{{altaCarrito.total | currency:'MXN':'symbol-narrow':'.2-2'}}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

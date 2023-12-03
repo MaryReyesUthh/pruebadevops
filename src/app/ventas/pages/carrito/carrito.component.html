@@ -1,0 +1,97 @@
+<div class="container mt-4 mb-5">
+  <div class="row">
+    <div class="col-md-9">
+      <form [formGroup]="form">
+        <mat-card class="example-card">
+          <mat-card-title>Productos</mat-card-title>
+          <mat-card-content>
+
+            <div class="my-2" *ngIf="!Productos || Productos.length === 0">
+              <mat-divider></mat-divider>
+              <br>
+              <div class="d-flex justify-content-center">
+                <img
+                  src="../../../../assets/resources/no-cart.png"
+                  height="400px">
+              </div>
+              <p class="h6 text-center">Su carrito de compras se encuentra vacío</p>
+              <div class="d-flex justify-content-center">
+                <a type="button" class="btn k-btn-pry-red my-2" [routerLink]="['/home']">Descubrir productos</a>
+              </div>
+            </div>
+            <div class="my-2" *ngFor="let prod of Productos">
+              <mat-divider></mat-divider>
+              <br>
+              <div class="col-xs-12">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="container-image">
+                      <img src="{{urlImage}}/{{prod.imageUrl}}">
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <p class="h5 text-truncate cursor" (click)="verProducto(prod)" matTooltip="Ver producto">
+                      {{prod.description}}
+                    </p>
+                    <p class="h7 text-secondary-red">
+                      <small>Talla:
+                        <container-element [ngSwitch]="prod.talla">
+                          <b *ngSwitchCase="'xl'">Extra grande</b>
+                          <b *ngSwitchCase="'l'">Grande</b>
+                          <b *ngSwitchCase="'m'">Mediana</b>
+                          <b *ngSwitchCase="'s'">Chica</b>
+                          <b *ngSwitchCase="'xs'">Extra chica</b>
+                        </container-element>
+                      </small>
+                    </p>
+                    <div class="mb-3">
+                      <button mat-stroked-button (click)="eliminarProducto(prod)">Eliminar</button>
+                      <button mat-stroked-button class="mx-2">Comprar ahora</button>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <mat-form-field class="form-full">
+                      <mat-label>Cantidad</mat-label>
+                      <input matInput type="number" [ngModel]="prod.cantidad" #quantity placeholder="Cantidad" (change)="setCantidad(quantity, prod)"
+                        [formControlName]="prod._id.$oid"/>
+                    </mat-form-field>
+                    <p class="text-center text-secondary-red">{{prod.existencia}} disponibles</p>
+                  </div>
+                  <div class="col-md-3">
+                    <p class="h4 text-right">
+                      <b class="text-pry-red">
+                        {{prod.subtotal | currency:'MXN':'symbol-narrow':'.2-2'}}
+                      </b>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <mat-card class="example-card">
+        <mat-card-title>Resumen de compra</mat-card-title>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-card-content>
+          <div class="d-flex justify-content-between">
+            <p>Productos ({{Productos.length}})</p>
+            <p class="text-right">{{altaCarrito.total | currency:'MXN':'symbol-narrow':'.2-2'}}</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>Envío</p>
+            <p class="text-right text-secondary-red">Gratis</p>
+          </div>
+          <div class="d-flex justify-content-between h5">
+            <p>Total</p>
+            <p class="text-right">{{altaCarrito.total | currency:'MXN':'symbol-narrow':'.2-2'}}</p>
+          </div>
+          <button class="k-btn-pry-red form-full" (click)="continuarCompra()" [disabled]="altaCarrito.total === 0" mat-button>Continuar compra</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

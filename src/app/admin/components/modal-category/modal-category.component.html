@@ -1,0 +1,65 @@
+<main>
+    <header class="modal-header">
+        <div class="modal-title">
+            {{data.isNew ? 'Nueva': 'Editar'}} categoría
+        </div>
+
+        <button mat-icon-button mat-dialog-close tabindex="-1">
+            <mat-icon class="close-icon btn-close-modal">close</mat-icon>
+        </button>
+    </header>
+
+    <section class="modal-body">
+
+        <div class="subtitle">
+            <div>
+                Datos de la categoría
+            </div>
+            <div class="linear"></div>
+        </div>
+
+        <form [formGroup]="form">
+            <div class="row">
+                <mat-form-field class="col-xs-12" color="primary" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" placeholder="Nombre de la categoría" formControlName="name" />
+                    <mat-error *ngIf="form.controls['name'].errors?.['required']">Nombre requerido</mat-error>
+                    <mat-error *ngIf="form.controls['name'].errors?.['pattern']">El nombre debe
+                        contener solo letras</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-xs-12 mb-4" color="primary" appearance="outline">
+                <label for="formFile" class="form-label">Imagen de la categoría</label>
+                <div *ngIf="!data.isNew" class="col-xs-12 border d-flex justify-content-center mb-3">
+                    <img src="{{urlImage}}/{{imageName}}" class="img-fluid" alt="Imagen de la categoría">
+                </div>
+                <input class="form-control" #inputFile type="file" accept="image/*" (change)="seleccionarImagen($event)">
+            </div>
+            <div class="row">
+                <mat-form-field class="col-xs-12" color="primary" appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <input matInput type="text" placeholder="Descripción de la categoría"
+                        formControlName="description" />
+                    <mat-error *ngIf="form.controls['description'].errors?.['required']">Descripción
+                        requerida</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-xs-12" color="primary" appearance="outline">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select formControlName="categorySex">
+                        <mat-option value="woman">Dama</mat-option>
+                        <mat-option value="man">Caballero</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.controls['categorySex'].errors?.['required']">Campo requerido</mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </section>
+
+    <section class="footer">
+        <button [disabled]="form.invalid || data.isNew && objImagen.nombreArchivo.length === 0" mat-raised-button class="k-btn-pry-red" (click)="submit()">{{data.isNew ?
+            'Crear': 'Actualizar'}} categoría</button>
+    </section>
+
+</main>

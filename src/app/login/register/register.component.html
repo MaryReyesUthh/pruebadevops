@@ -1,0 +1,37 @@
+<main class="login-page bg-light">
+  <section class="login-body">
+    <section class="login-logo">
+      <a [routerLink]="['/home']" style="cursor: pointer"><img src="../../../assets/resources/image-logo.jpeg" alt="" /></a>
+    </section>
+    <section class="login-container shadow-lg">
+      <section class="card b-nn">
+        <header class="title-card">
+          <h1>Registro</h1>
+        </header>
+        <mat-divider></mat-divider>
+        <form [formGroup]="formRegister">
+          <section class="card-form">
+            <div class="form-usuario">
+              <mat-form-field appearance="outline" class="form-full">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput formControlName="email" placeholder="Ingrese su correo electrónico" type="email"
+                  required />
+                  <mat-error *ngIf="formRegister.controls['email'].errors?.['required']">Correo electrónico requerido</mat-error>
+                  <mat-error *ngIf="formRegister.controls['email'].errors?.['email']">Correo electrónico no válido</mat-error>
+              </mat-form-field>
+            </div>
+          </section>
+        </form>
+        <section class="action">
+          <button (click)="validateEmail()" class="k-btn-primary k-btn-pry-red" mat-flat-button [disabled]="formRegister.invalid">
+            <span class="spinner-border spinner-border-sm" role="status" *ngIf="loading"></span>
+            Registrarme
+          </button>
+        </section>
+        <div class="forgot-psw text-center">
+          <a [routerLink]="['/home/login']">Iniciar sesión</a>
+        </div>
+      </section>
+    </section>
+  </section>
+</main>

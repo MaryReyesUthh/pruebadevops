@@ -1,0 +1,67 @@
+<main class="login-page bg-light">
+  <section class="login-body">
+    <section class="login-logo">
+      <a [routerLink]="['/home']" style="cursor: pointer"><img src="../../../assets/resources/image-logo.jpeg" alt="" /></a>
+    </section>
+    <section class="login-container shadow-lg">
+      <form [formGroup]="form">
+        <section class="card" style="border: none;">
+          <header class="title-card">
+            <h1>Registro</h1>
+          </header>
+          <mat-divider></mat-divider>
+          <section class="card-form">
+            <p>{{objCliente.email}}</p>
+            <div class="form-usuario">
+              <mat-form-field appearance="outline" class="form-full">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" placeholder="Ingrese su nombre completo" type="text" />
+                <mat-error *ngIf="form.controls['name'].errors?.['required']">Nombre requerido</mat-error>
+                <mat-error *ngIf="form.controls['name'].errors?.['pattern']">Solo se admiten letras</mat-error>
+              </mat-form-field>
+            </div>
+            <p>La contraseña debe contener al menos 8 letras</p>
+            <p>1 letra en mayúscula</p>
+            <p>1 letra en minúscula</p>
+            <p>Al menos un número</p>
+            <div class="form-password">
+              <mat-form-field appearance="outline" class="form-full">
+                <mat-label>Contraseña</mat-label>
+                <input matInput (keyup)="validaPwds()" matInput [type]="clear ? 'text' : 'password'"
+                  formControlName="password" placeholder="Ingrese su contraseña" />
+                <mat-icon class="puntero" (click)="clear = !clear" matSuffix [color]="clear ? 'primary' : ''">
+                  {{ clear ? "visibility" : "visibility_off" }}
+                </mat-icon>
+                <mat-error *ngIf="form.controls['password'].errors?.['required']">Contraseña requerida</mat-error>
+                <mat-error *ngIf="form.controls['password'].errors?.['pattern']">No cumple con los requisitos</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-password">
+              <mat-form-field appearance="outline" class="form-full">
+                <mat-label>Confirmar contraseña</mat-label>
+                <input matInput (keyup)="validaPwds()" matInput [type]="clearConfirm ? 'text' : 'password'"
+                  formControlName="password2" placeholder="Confirme su contraseña" />
+                <mat-icon class="puntero" (click)="clearConfirm = !clearConfirm" matSuffix
+                  [color]="clearConfirm ? 'primary' : ''">
+                  {{ clearConfirm ? "visibility" : "visibility_off" }}
+                </mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="!pwdsCoinciden && pwdsValue">
+              Las contraseñas no coinciden!
+            </div>
+          </section>
+          <section class="action">
+            <button (click)="register()" class="k-btn-primary k-btn-pry-red" mat-flat-button [disabled]="form.invalid">
+              <span class="spinner-border spinner-border-sm" role="status" *ngIf="loading"></span>
+              Registrarme
+            </button>
+          </section>
+          <div class="forgot-psw text-center">
+            <a [routerLink]="['/home/login']">Iniciar sesión</a>
+          </div>
+        </section>
+      </form>
+    </section>
+  </section>
+</main>

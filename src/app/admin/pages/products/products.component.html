@@ -1,0 +1,59 @@
+<div class="container-fluid p-4">
+    <div class="py-4">
+        <div class="d-flex justify-content-between"><b class="h3">Productos disponibles</b>
+            <button mat-raised-button class="k-btn-pry-red" (click)="openModal(true)">
+                <mat-icon>add</mat-icon>
+                Agregar producto
+            </button>
+        </div>
+        <p class="h6 fw-light">Listado de productos disponibles</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="py-4">
+        <table mat-table [dataSource]="objProducts" class="shadow">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+            <ng-container matColumnDef="categoria">
+                <th mat-header-cell *matHeaderCellDef> Categoría </th>
+                <td mat-cell *matCellDef="let element"> {{getCategoria(element.categoryID)}} </td>
+            </ng-container>
+            <ng-container matColumnDef="talla">
+                <th mat-header-cell *matHeaderCellDef> Talla </th>
+                <td mat-cell *matCellDef="let element"> {{getTalla(element.talla)}} </td>
+            </ng-container>
+            <ng-container matColumnDef="categorySex">
+                <th mat-header-cell *matHeaderCellDef> Sexo </th>
+                <td mat-cell *matCellDef="let element"> {{getTypeSex(element.categorySex)}} </td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef> Precio </th>
+                <td mat-cell *matCellDef="let element"> ${{element.precio}} </td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+                <th mat-header-cell class="text-center" *matHeaderCellDef> Opciones </th>
+                <td mat-cell class="text-center" *matCellDef="let element">
+                    <button mat-icon-button color="accent" matTooltip="Editar producto"
+                        (click)="openModal(false , element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Eliminar producto"
+                        (click)="deleteProduct(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row class="example-element-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

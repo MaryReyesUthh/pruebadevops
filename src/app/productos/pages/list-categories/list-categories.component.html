@@ -1,0 +1,27 @@
+<img *ngIf="typeCat === 'man'" src="./../../../../assets/resources/sld1.png" class="img-fluid" alt="Responsive image">
+<img *ngIf="typeCat === 'woman'" src="./../../../../assets/resources/sld2.png" class="img-fluid" alt="Responsive image">
+<div class="container">
+    <div class="py-4">
+        <p class="h3">{{typeCat === 'man' ? 'Moda para caballero': 'Moda para dama'}}</p>
+        <p class="h5 fw-light">Encuentre el producto que busca.</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="py-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-4">
+            <div class="col" *ngFor="let cat of objCategories">
+                <div class="card h-100 shadow hover-shadow">
+                    <div class="container-image border-bottom">
+                        <img src="{{urlImage}}/{{cat.imageUrl}}">
+                    </div>
+                    <div class="card-body">
+                        <p class="h5 text-center fw-bold pt-4">{{cat.name}}</p>
+                        <p class="h6 text-center fw-light text-truncate">{{cat.description}}</p>
+                    </div>
+                    <div class="card-footer mt-2 d-flex justify-content-center">
+                        <button (click)="verCategoria(cat)" class="btn btn-danger my-2">Ver categoría</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

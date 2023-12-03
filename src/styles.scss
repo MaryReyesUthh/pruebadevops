@@ -1,0 +1,183 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./assets/styles/colores.scss";
+@import "./assets/styles/buttons.scss";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.form-full {
+  width: 100%;
+}
+.shadow {
+  border: none;
+}
+.b-nn {
+  border: none;
+}
+.sinpadding .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 4px;
+}
+.hover-shadow {
+  transition: transform 0.2s;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+  }
+}
+.text-pry-gray {
+  color: $pry-gray !important;
+}
+.text-pry-dark {
+  color: $pry-dark !important;
+}
+.text-pry-red {
+  color: $pry-red !important;
+}
+.text-secondary-red {
+  color: $secondary-red !important;
+}
+.container-image img {
+	height: 300px;
+    width: 100%;
+	object-fit: scale-down;
+}
+
+
+// MAT TABLE STYLES 
+
+table {
+  width: 100%;
+  min-width: 600px;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+// MODALS STYLES 
+
+.modal-header {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 1rem 1.5rem;
+
+  .modal-title {
+    color: #4f4f4f;
+    font-family: "Open Sans";
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: center;
+  }
+}
+
+.modal-body {
+  padding: 0.5rem 1.5rem;
+  overflow: auto;
+  max-height: 460px !important;
+
+  .subtitle {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    .form-subtitle {
+      text-align: left;
+      font-weight: 400;
+    }
+    .linear {
+      flex-grow: 1;
+      border-bottom: 1px solid #dbdbdb;
+    }
+  }
+}
+
+.footer {
+  padding: 1rem 3rem;
+  text-align: center;
+
+  button {
+    width: 60%;
+    min-width: 300px;
+    height: 41px;
+  }
+}
+
+// BREADCRUMS
+
+.div-crumb {
+  background: #f5f5f5;
+}
+.breadcrumb-app {
+  display: inline-block;
+}
+.breadcrumb-app:first-child:before {
+  display: none;
+}
+.breadcrumb-app:before {
+  content: "/";
+  margin: 0 10px 0 8px;
+}
+.breadcrumb-item {
+  padding: 0 8px;
+  font-weight: 300;
+}
+.breadcrumb-item.active {
+  font-weight: 500;
+}
+.breadcrumb-link {
+  text-decoration: none;
+  color: #4f4f4f;
+}
+.breadcrumb-link:hover {
+  color: $pry-red;
+}

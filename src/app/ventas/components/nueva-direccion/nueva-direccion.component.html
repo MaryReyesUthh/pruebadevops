@@ -1,0 +1,70 @@
+<main>
+    <header class="modal-header">
+        <div class="modal-title">
+            {{data.isNew ? 'Nueva': 'Editar'}} Dirección
+        </div>
+
+        <button mat-icon-button mat-dialog-close tabindex="-1">
+            <mat-icon class="close-icon btn-close-modal">close</mat-icon>
+        </button>
+    </header>
+
+    <section class="modal-body">
+
+        <div class="subtitle">
+            <div>
+                Datos del cliente
+            </div>
+            <div class="linear"></div>
+        </div>
+
+        <form [formGroup]="form">
+            <div class="row">
+                <mat-form-field class="col-xs-12" color="primary" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" placeholder="Nombre" formControlName="nombre" required/>
+                    <mat-error *ngIf="form.controls['nombre'].errors?.['required']">Campo requerido</mat-error>
+                    <mat-error *ngIf="form.controls['nombre'].errors?.['pattern']">Solo se admiten letras</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" color="primary" appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <input matInput type="text" placeholder="Estado" formControlName="estado" required/>
+                    <mat-error *ngIf="form.controls['estado'].errors?.['required']">Campo requerido</mat-error>
+                    <mat-error *ngIf="form.controls['estado'].errors?.['pattern']">Solo se admiten letras</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" color="primary" appearance="outline">
+                    <mat-label>Municipio</mat-label>
+                    <input matInput type="text" placeholder="Municipio" formControlName="municipio" required/>
+                    <mat-error *ngIf="form.controls['municipio'].errors?.['required']">Campo requerido</mat-error>
+                    <mat-error *ngIf="form.controls['municipio'].errors?.['pattern']">Solo se admiten letras</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-7" color="primary" appearance="outline">
+                    <mat-label>Colonia</mat-label>
+                    <input matInput type="text" placeholder="Colonia" formControlName="colonia" required/>
+                    <mat-error *ngIf="form.controls['colonia'].errors?.['required']">Campo requerido</mat-error>
+                    <mat-error *ngIf="form.controls['colonia'].errors?.['pattern']">Solo se admiten letras</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-5" color="primary" appearance="outline">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput type="text" placeholder="Telefono" maxlength="10" formControlName="telefono" required/>
+                    <mat-error *ngIf="form.controls['telefono'].errors?.['required']">Campo requerido</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-xs-12" color="primary" appearance="outline">
+                    <mat-label>Calle</mat-label>
+                    <input matInput type="text" placeholder="Calle" formControlName="calle" required/>
+                    <mat-error *ngIf="form.controls['calle'].errors?.['required']">Campo requerido</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-xs-12" color="primary" appearance="outline">
+                    <mat-label>Indicaciones adicionales</mat-label>
+                    <textarea matInput cols="30" placeholder="Indicaciones adicionales (opcional)" formControlName="indicaciones" rows="3"></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+    </section>
+
+    <section class="footer">
+        <button [disabled]="form.invalid" mat-raised-button class="k-btn-pry-red" (click)="submit()">{{data.isNew ?
+            'Agregar': 'Actualizar'}} dirección</button>
+    </section>
+
+</main>

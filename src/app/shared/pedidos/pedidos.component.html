@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="py-4">
+        <p class="h3">Mis compras</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="py-4">
+        <div class="col" *ngFor="let sale of objSales">
+            <mat-card class="mb-4">
+                <mat-card-title class="text-secondary-red">
+                    {{sale.fechaVenta | date : 'dd/MM/yyyy hh:mm a' }}
+                </mat-card-title>
+                <mat-card-content>
+                    <mat-divider></mat-divider>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="d-flex justify-content-between">
+                                <p class="h6 text-truncate cursor">
+                                    A nombre de {{sale.nombreCliente | uppercase}}
+                                </p>
+                                <p class="text-right">Productos ({{getCantProductos(sale)}})</p>
+                            </div>
+                            <p>
+                                <small>
+                                    Dirección de entrega: Calle {{sale.direccionEntrega.calle | uppercase}},
+                                    {{sale.direccionEntrega.colonia | uppercase}},
+                                    {{sale.direccionEntrega.municipio | uppercase}}, {{sale.direccionEntrega.estado |
+                                    uppercase}}
+                                </small>
+                            </p>
+                            <div *ngFor="let prod of sale.productos" class="py-1">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span class="text-truncate">{{prod.title}} - {{prod.category}}</span><br>
+                                        {{prod.cantidad}} u. |
+                                        <small class="text-secondary-red">Talla:
+                                            <container-element [ngSwitch]="prod.talla">
+                                                <span *ngSwitchCase="'xl'">Extra grande</span>
+                                                <span *ngSwitchCase="'l'">Grande</span>
+                                                <span *ngSwitchCase="'m'">Mediana</span>
+                                                <span *ngSwitchCase="'s'">Chica</span>
+                                                <span *ngSwitchCase="'xs'">Extra chica</span>
+                                            </container-element>
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <p class="text-secondary-red">
+                                            {{prod.subtotal | currency:'MXN':'symbol-narrow':'.2-2'}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="h4 text-right">
+                                <b class="text-pry-red">
+                                    {{sale.total | currency:'MXN':'symbol-narrow':'.2-2'}}
+                                </b>
+                            </p>
+                            <p class="text-right">Total de compra</p>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <mat-card class="mb-4" *ngIf="!objSales || objSales.length === 0">
+        <mat-card-title class="h3">No ha realizado ninguna compra</mat-card-title>
+        <mat-divider></mat-divider>
+        <br>
+        <div class="d-flex justify-content-center">
+            <img src="../../../assets/resources/no-sales.png" height="400px">
+        </div>
+        <div class="d-flex justify-content-center">
+            <a type="button" class="btn k-btn-pry-red my-2" [routerLink]="['/home']">Descubrir productos</a>
+        </div>
+    </mat-card>
+</div>

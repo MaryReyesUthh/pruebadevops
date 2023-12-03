@@ -1,0 +1,145 @@
+@import "../../../assets/styles/colores.scss";
+.login-page {
+  --font-family: "Open Sans", sans-serif;
+  --text-black: #333;
+  --gray-text: #4f4f4f;
+  --alternative-text: #7846d4;
+  --background-gray: #f2f2f2;
+  --input-bg: #e8f0fe;
+}
+
+.login-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  @extend .basic-text;
+
+  .login-body {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    align-items: center;
+    margin-bottom: -3px;
+    background-position: top;
+    background-size: cover;
+    width: 100%;
+    padding: 0px;
+
+    .login-logo {
+      img {
+        width: 80%;
+        height: auto;
+      }
+    }
+
+    .login-container {
+      width: 420px;
+      border-radius: 6px;
+    //   box-shadow: 0 6px 17px 0 rgba(0, 0, 0, 0.46);
+    }
+  }
+}
+
+.card {
+  margin: 0;
+  padding: 45px 40px;
+
+  .title-card {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+      margin: 0;
+      color: var(--text-black);
+      @extend .title-text;
+    }
+
+    p {
+      margin: 0;
+      color: var(--text-black);
+    }
+  }
+
+  .card-form {
+    padding-top: 30px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .action {
+    button {
+      margin: 12px 0 18px;
+      height: 40px !important;
+      width: 100%;
+    }
+  }
+}
+
+.forgot-psw {
+  @extend .subtitle-text;
+  opacity: 0.73;
+  margin-top: 16px;
+  cursor: pointer;
+  user-select: none;
+  a {
+    color: $pry-red !important;
+  }
+}
+
+// general style
+.basic-text {
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.title-text {
+  font-family: var(--font-family);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 33px;
+}
+
+.subtitle-text {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.input-label {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 19px;
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    .login-body {
+      flex-direction: column;
+      padding-top: 35px !important;
+      padding-bottom: 50px !important;
+      justify-content: flex-start !important;
+      .login-logo {
+        margin-bottom: 24px;
+        img {
+          height: 120px !important;
+          width: auto !important;
+        }
+      }
+      .login-container {
+        width: 310px !important;
+      }
+    }
+  }
+  .card {
+    width: 310px;
+    .card-form {
+      height: 120px;
+    }
+  }
+}
